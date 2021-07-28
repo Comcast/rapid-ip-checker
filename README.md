@@ -67,3 +67,17 @@ $ ric -i input_ips.txt -t test_target.txt -v
 0.0.0.0/0##Found in 192.168.0.0/16
 ###--- 2.6708738803863525 seconds ---
 ```
+
+## License
+
+`rapid-ip-checker` is licensed under [Apache License 2.0](/LICENSE.md). 
+
+## Code of Conduct
+
+We take our [code of conduct](CODE_OF_CONDUCT.md) very seriously. Please abide 
+by it.
+
+## Contributing
+
+Please read our [contributing guide](CONTRIBUTING.md) for details on how to 
+contribute to our project.
