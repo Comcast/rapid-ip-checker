@@ -28,7 +28,7 @@ The mask can be indicate the number of hosts in a network :
 Now, checking if an IP is in a network, becomes an integer comparison problem. This comparison is implemented as a Cuda Kernel, using Numba, that is run in parallel on the GPU cores.
 
 ## Setup :
-### Create the environment "ric-rapids-0.19" :
+### Create a conda environment "ric-rapids-0.19" :
 `conda create -n ric-rapids-0.19 -c rapidsai -c nvidia -c conda-forge -c defaults cudf=0.19 python=3.7 cudatoolkit=11.0 numba numpy`
 
 ### Activate the environment :
