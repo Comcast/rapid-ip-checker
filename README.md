@@ -70,7 +70,7 @@ $ ric -i input_ips.txt -t test_target.txt -v
 
 ## License
 
-`rapid-ip-checker` is licensed under [Apache License 2.0](/LICENSE.md). 
+`rapid-ip-checker` is licensed under [Apache License 2.0](/LICENSE). 
 
 ## Code of Conduct
 
