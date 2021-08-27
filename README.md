@@ -1,6 +1,6 @@
 # rapid-ip-checker (ric)
 
-ric (Rapid IP Checker) is a tool that can be used to check whether a list of input Host/Network IP addresses, is part of a large list of network ranges, using the parallel computing capabilities of general purpose graphics processing units (GP-GPUs).
+ric (Rapid IP Checker) is a tool that can be used to check whether a list of input Host/Network IP addresses (IPv4 and IPv6), is part of a large list of network ranges, using the parallel computing capabilities of general purpose graphics processing units (GP-GPUs).
 
 ric leverages the following for this :
 * *Python 3*
@@ -35,16 +35,20 @@ Now, checking if an IP is in a network, becomes an integer comparison problem. T
 `conda activate ric-rapids-0.19`
 
 ### Create a bash alias for the program :
-`alias ric="python ./ric.py"; source ~/.bashrc ; alias > ~/.bash_aliases`
+```
+alias ric="python ./ric.py"; source ~/.bashrc ; alias > ~/.bash_aliases`
+alias ric6="python ./ric6.py"; source ~/.bashrc ; alias > ~/.bash_aliases`
+```
 
 ### Run the Program :
-`ric -i input_ips.txt -t test_target.txt`
+For IPv4 addresses : `ric -i input_ipv4_file.txt -t target_ipv4_file.txt`<br />
+For IPv6 addresses : `ric6 -i input_ipv6_file.txt -t target_ipv6_file.txt`
 
 ### Backup the environment :
 `conda env export > environment.yml`
 
 ## Usage :
-* Create a list of input  and target ranges in two text files (new line seperated).
+* Create a list of input  and target ranges in two text files (new line seperated). IPv6 addresses can be in the abbreviated format.
 * Pass that file as an argument to ric :<br/>```ric -i input_ips.txt -t test_target.txt```
 
 ## Sample Output : 
@@ -66,6 +70,20 @@ $ ric -i input_ips.txt -t test_target.txt -v
 255.255.255.255/32##Found in 255.255.0.0/16
 0.0.0.0/0##Found in 192.168.0.0/16
 ###--- 2.6708738803863525 seconds ---
+```
+```
+$ ric6 -i input_ips_v6.txt -t test_target_v6.txt -v
+### Device in use :  NVIDIA Tesla V100-PCIE-16GB
+### Number Input IPs :  5 ; Target Size :  4
+### Grid Dimensions of input mask operations : ( 1 : 1024 )
+### Grid Dimensions of target mask operations : ( 1 : 1024 )
+### Grid Dimensions of comparison :  (1, 1) : (31, 31) )
+2000:1:0000:0000:0000:0000:0000:/120 ##Found in 2000:0000:0000:0000:0000:0000:0000:/3
+2000:0000:0000:0000:0000:0000:0000:1/128 ##Found in 2000:0000:0000:0000:0000:0000:0000:/3
+ff01:0000:0000:0000:0000:0000:0000:1/128 ##Found in ff00:0000:0000:0000:0000:0000:0000:/8
+ff00:0000:0000:0000:0000:0000:0000:2/127 ##Found in ff00:0000:0000:0000:0000:0000:0000:/8
+0000:0000:0000:0000:0000:0000:0000:/8 ##Not_Found
+###--- 6.19579553604126 seconds ---
 ```
 
 ## License
