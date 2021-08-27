@@ -85,6 +85,7 @@ def mask_split_v6(input_array, generic_mask_split):
       generic_mask_split[thread_pos][x] = 2**(i - prev)-1
       prev += (i - prev)
 
+vprint("### Device in use : ", cuda.get_current_device().name.decode())
 
 ## Read the files and return them as numpy arrays and their size
 input_initial, input_ips, input_mask, input_size =  load_array_v6(args.input_file)

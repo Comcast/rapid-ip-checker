@@ -10,10 +10,14 @@
 `conda activate rapids-0.19`
 
 ### Create a bash alias for the program :
-`alias ric="python /usr/local/share/ric/ric.py"; source ~/.bashrc ; alias > ~/.bash_aliases`
+```
+alias ric="python ./ric.py"; source ~/.bashrc ; alias > ~/.bash_aliases
+alias ric6="python ./ric6.py"; source ~/.bashrc ; alias > ~/.bash_aliases
+```
 
 ### Run the Program :
-`ric -i input_ips.txt`
+For IPv4 addresses : `ric -i input_ipv4_file.txt -t target_ipv4_file.txt`<br />
+For IPv6 addresses : `ric6 -i input_ipv6_file.txt -t target_ipv6_file.txt`
 
 ### Deactivate the shared environment when not required :
 `conda deactivate`
