@@ -36,8 +36,8 @@ Now, checking if an IP is in a network, becomes an integer comparison problem. T
 
 ### Create a bash alias for the program :
 ```
-alias ric="python ./ric.py"; source ~/.bashrc ; alias > ~/.bash_aliases`
-alias ric6="python ./ric6.py"; source ~/.bashrc ; alias > ~/.bash_aliases`
+alias ric="python ./ric.py"; source ~/.bashrc ; alias > ~/.bash_aliases
+alias ric6="python ./ric6.py"; source ~/.bashrc ; alias > ~/.bash_aliases
 ```
 
 ### Run the Program :
