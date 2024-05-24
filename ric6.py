@@ -53,8 +53,8 @@ def load_array_v6(filename):
   ## Convert each split octet into its decimal equivalent (16 bits)
   for x in range(8):
    df[x] = df[x].str.htoi()
-  gdf_ips=df.astype('int').as_matrix()
-  gdf_mask=gdf.astype('int').as_matrix()
+  gdf_ips=df.astype('int').to_pandas().to_numpy()
+  gdf_mask=gdf.astype('int').to_pandas().to_numpy()
   rows = gdf.shape[0]
   return original_frame, gdf_ips, gdf_mask, rows
 

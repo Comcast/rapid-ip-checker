@@ -51,7 +51,7 @@ def load_array(filename):
   gdf[3]=new_cols[0]
   gdf[4]=new_cols[1].fillna(32)
   ## Convert the values in the frame to ints, and then into a numpy array
-  gdf2=gdf.astype('int').as_matrix()
+  gdf2=gdf.astype('int').to_pandas().to_numpy()
   ## Also return the number of IPs (number of rows)
   rows = gdf.shape[0]
   return gdf2 , rows
