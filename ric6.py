@@ -104,19 +104,33 @@ vprint("### Number Input IPs : " , input_size, "; Target Size : " , target_size 
 
 ## Split the 128 bit mask to return size in decimal, per octet
 generic_mask_split = input_mask_split
+if griddim_x > MAX_GRID_DIM_X or griddim_y > MAX_GRID_DIM_Y:
+    raise ValueError(f"Input size or target size exceeds maximum grid dimensions: ({griddim_x}, {griddim_y})")
 vprint("### Grid Dimensions of input mask operations : (" , griddim, ":" , blockdim, ")")
 mask_split_v6[griddim,blockdim](input_mask, generic_mask_split)
 input_mask_split = generic_mask_split
 
 generic_mask_split = target_mask_split
 griddim = (target_size + (blockdim - 1)) // blockdim
+if griddim_x > MAX_GRID_DIM_X or griddim_y > MAX_GRID_DIM_Y:
+    raise ValueError(f"Input size or target size exceeds maximum grid dimensions: ({griddim_x}, {griddim_y})")
 vprint("### Grid Dimensions of target mask operations : (" , griddim, ":" , blockdim, ")")
 mask_split_v6[griddim,blockdim](target_mask, generic_mask_split)
 target_mask_split = generic_mask_split
 
 ## Compare the two arrays
+MAX_GRID_DIM_X = 2147483647
+MAX_GRID_DIM_Y = 65535
+
 blockdim = (31, 31)
-griddim = (((target_size + (blockdim[1] - 1)) // blockdim[1]) % 65535, ((input_size + (blockdim[0] - 1)) // blockdim[0]) % 65535)
+griddim_x = ((target_size + (blockdim[1] - 1)) // blockdim[1])
+griddim_y = ((input_size + (blockdim[0] - 1)) // blockdim[0])
+
+# Validate grid dimensions
+if griddim_x > MAX_GRID_DIM_X or griddim_y > MAX_GRID_DIM_Y:
+    raise ValueError(f"Input size or target size exceeds maximum grid dimensions: ({griddim_x}, {griddim_y})")
+
+griddim = (griddim_x % MAX_GRID_DIM_Y, griddim_y % MAX_GRID_DIM_Y)
 vprint("### Grid Dimensions of comparison : " , griddim, ":" , blockdim, ")")
 compare_net_to_net_v6[griddim, blockdim](input_ips, input_mask_split, target_ips, target_mask_split, res_array)
 
